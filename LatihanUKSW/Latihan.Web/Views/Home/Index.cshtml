@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model Latihan.Data.DataAccess
+
+<form asp-action="Index"  method="POST" class="panel panel-default">
+<div class="panel-heading">
+    New user
+</div>
+    <div class="panel-body">
+
+    <label>User Name</label>
+    <input  type="text" name="user_name" class="form-control"/>
+    <label>Email </label>
+    <input  type="text" name="email" class="form-control"/>
+    <label>Password </label>
+    <input  type="text" name="password" class="form-control"/>
+    <label>Full name </label>
+    <input  type="text" name="full_name" class="form-control"/>
+    <input  type="submit" value="submit" class="btn btn-primary"/>
+    </div>
+
+</form>
+
+
+<table class="table table-default">
+    <thead>
+        <th>Email</th>
+        <th>User Name</th>
+        <th>User Id</th>
+        <th>Password</th>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.GetUser()){
+            <tr>
+                <td>@item.email</td>
+                <td>@item.user_name</td>
+                <td>@item.user_id</td>
+                <td>@item.password</td>
+                <td>
+                    <input type="button" 
+                        id="btnDelete"
+                        data-val="@item.user_id"
+                        value="Delete" 
+                        class="btn btn-danger btndelete" 
+                     />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts{
+
+<script type="text/javascript">
+    $(function(){
+        $(".btndelete").click(function(){
+            var id = $(this).data('val');
+            console.log(id);
+            $.get('/api/deleteuser?user_id='+id,function(d){
+                alert('succes '+d);
+            })
+        }) ;     
+        // $("#btnDelete").bind('click',function(){
+        //     var id = $.data(this,'val');
+        //     console.log(id);
+        //     $.get('/api/deleteuser?user_id='+id,function(d){
+        //         alert('succes '+d);
+        //     })
+        // }) ;     
+    });
+ 
+</script>
+}

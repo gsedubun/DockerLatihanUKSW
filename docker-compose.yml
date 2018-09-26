@@ -1,0 +1,28 @@
+version: '3'
+
+services: 
+  webapp: 
+    image: latihanuksw:latest
+    build:
+      context : ./LatihanUKSW
+      dockerfile: Dockerfile
+    environment:
+      DB_CONN_STRING: "host=postgres_image;port=5432; database=TrainingUKSW; user id=postgres; password=postgres"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    ports:
+      - "81:80"
+    depends_on: ['postgres_image','adminer']
+  postgres_image:
+    image: postgres:10.5-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "TrainingUKSW"
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+

@@ -1,4 +1,5 @@
 # LatihanUKSW
+Dockerize version of LatihanUKSW.
 Latihan Kerja Praktek UKSW 2018
 
 ## basics of C# on .NET

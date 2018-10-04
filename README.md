@@ -6,7 +6,6 @@ Latihan Kerja Praktek UKSW 2018
 ## Class Library with Data Acces to PostgreSQL
 ## ASP.NET CORE MVC 
 
-#DOWNLOAD GOOGLE SLIDES DI 
 
 
 
